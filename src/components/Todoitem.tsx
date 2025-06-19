@@ -1,6 +1,10 @@
 import { Buttons } from "./Buttons";
 
-export function Todoitem(){
+interface TodoitemProps {
+  task: string;
+}
+
+export function Todoitem( {task}:TodoitemProps ){
     const buttonStyle: React.CSSProperties = {
         backgroundColor: '#E1E7EB',
         width: '100px',
@@ -23,7 +27,7 @@ export function Todoitem(){
                borderRadius: '10px',
             }}>
             
-            <h4 style = {{display: 'flex', alignItems: 'center', paddingLeft: '20px'}}> Do the dishes </h4>
+            <h4 style = {{display: 'flex', alignItems: 'center', paddingLeft: '20px'}}> {task} </h4>
             
             <div style = {{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '20px' }}>
                 <Buttons/>
