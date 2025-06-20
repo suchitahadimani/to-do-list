@@ -55,7 +55,12 @@ export function Todoitem( {task, id, complete}:TodoitemProps ){
                         onKeyDown={(e) => {
                         if (e.key === 'Enter') updateTasks(editedTask);
                         }}
-
+                        style={{
+                            fontSize: '18px',
+                            padding: '10px',
+                            borderRadius: '5px',
+                            width: '100%',
+                            }}
                     />
                     ) : (
                     <h4 style={{ margin: 0 }}>{task}</h4>
