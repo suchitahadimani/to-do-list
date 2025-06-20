@@ -26,28 +26,12 @@ export function Buttons({ complete,id, onEditClick }: { complete: boolean; id: n
       }
   }
 
-
-
-
-
-  const buttonStyle: React.CSSProperties = {
-    backgroundColor: complete ? "#D9D9D9" : '#E1E7EB',
-    width: '100px',
-    height: '60px',
-    padding: '20px',
-    borderRadius: '10px',
-    textAlign: 'center',
-    marginLeft: '10px',
-    border: 'none',
-    cursor: 'pointer',
-  };
-
   return (
     <>
-      <button style={buttonStyle} onClick={() => updateStatus(id, !complete)}>{complete ? "Complete" : "New"}</button>
-      <button style={buttonStyle} onClick={() => navigate(`/todo/${id}`)}>View</button>
-      <button style={buttonStyle} onClick={onEditClick}>Edit</button>
-      <button style={buttonStyle} onClick={() => deletebyID(id)}>Delete</button>
+      <button className={`todo-button ${complete ? "complete" : ""}`} onClick={() => updateStatus(id, !complete)}>{complete ? "Complete" : "New"}</button>
+      <button className={`todo-button ${complete ? "complete" : ""}`} onClick={() => navigate(`/todo/${id}`)}>View</button>
+      <button className={`todo-button ${complete ? "complete" : ""}`} onClick={onEditClick}>Edit</button>
+      <button className={`todo-button ${complete ? "complete" : ""}`} onClick={() => deletebyID(id)}>Delete</button>
     </>
   );
 }

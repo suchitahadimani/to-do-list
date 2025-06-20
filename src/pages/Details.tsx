@@ -6,18 +6,6 @@ function Details() {
   const id = (useParams());
   const todo = useTodoStore((status)=> status.todos.find((t) => t.id == Number(id.id)));
 
-    const buttonStyle: React.CSSProperties = {
-    backgroundColor: '#E1E7EB',
-    width: '100px',
-    height: '60px',
-    padding: '20px',
-    borderRadius: '10px',
-    textAlign: 'center',
-    marginLeft: '10px',
-    border: 'none',
-    cursor: 'pointer',
-  };
-
   return (
     <div style={{ backgroundColor: '#F9F9F9', width: '100vw', padding: '20px', boxSizing: 'border-box', minHeight: '100vh', display:'flex', alignItems:'center', justifyContent: 'center'}}>
     
@@ -41,7 +29,7 @@ function Details() {
           </div>
           
           <div style={{ display: 'flex', marginTop:'20px', justifyContent: 'center',}}>
-            <button style = {buttonStyle} onClick={() => navigate(`/`)}>
+            <button className={"todo-button"} onClick={() => navigate(`/`)}>
               Go Back
             </button>
           </div>

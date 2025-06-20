@@ -6,6 +6,8 @@ interface TodoState {
   todos: Todo[];
   completedCount: number;
   totalCount:number;
+  finishedtodo: Todo[];
+  newtodo: Todo[];
   addTodo: (todo: string) => void;
   removeTodo: (id: number) => void;
   setTodos: (todos: Todo[]) => void;
@@ -17,8 +19,12 @@ export const useTodoStore = create<TodoState>((set) => ({
   todos: [],
   completedCount: 0,
   totalCount: 0,
+  finishedtodo: [],
+  newtodo: [],
   setTodos: (todos) => set({
     todos,
+    finishedtodo: todos.filter(t => t.completed),
+    newtodo: todos.filter(t => !t.completed),
     completedCount: todos.filter(t => t.completed).length,
     totalCount: todos.length
   }),
@@ -33,6 +39,8 @@ export const useTodoStore = create<TodoState>((set) => ({
     const updated = [newTodo, ...state.todos];
     return {
       todos: updated,
+      finishedtodo: updated.filter(t => t.completed),
+      newtodo: updated.filter(t => !t.completed),
       completedCount: updated.filter(t => t.completed).length,
       totalCount: updated.length
     };
@@ -42,6 +50,8 @@ export const useTodoStore = create<TodoState>((set) => ({
     const updated = state.todos.filter(t => t.id !== id);
     return {
       todos: updated,
+      finishedtodo: updated.filter(t => t.completed),
+      newtodo: updated.filter(t => !t.completed),
       completedCount: updated.filter(t => t.completed).length,
       totalCount: updated.length
     };
@@ -53,6 +63,8 @@ export const useTodoStore = create<TodoState>((set) => ({
     );
     return {
       todos: updated,
+      finishedtodo: updated.filter(t => t.completed),
+      newtodo: updated.filter(t => !t.completed),
       completedCount: updated.filter(t => t.completed).length,
       totalCount: updated.length
     };
@@ -64,6 +76,8 @@ export const useTodoStore = create<TodoState>((set) => ({
     );
     return {
       todos: updated,
+      finishedtodo: updated.filter(t => t.completed),
+      newtodo: updated.filter(t => !t.completed),
       completedCount: updated.filter(t => t.completed).length,
       totalCount: updated.length
     };
