@@ -1,4 +1,9 @@
+import { useTodoStore } from "../store/store";
+
 export function Progress(){
+    const {completedCount,totalCount} = useTodoStore();
+    const newCount = totalCount - completedCount;
+    
     return (
         <div style = {{
             backgroundColor:"#E1E7EB",
@@ -11,9 +16,9 @@ export function Progress(){
             borderRadius: '10px'
 
         }}>
-            <h3>Total: 0</h3>
-            <h3>Completed: 0</h3>
-            <h3>In Progress: 0</h3>
+            <h3>Total: {totalCount}</h3>
+            <h3>Completed: {completedCount}</h3>
+            <h3>In Progress: {newCount}</h3>
         </div>
     );
 }

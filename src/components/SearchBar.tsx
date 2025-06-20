@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { addToDo } from "../apis/todo";
+import { addToDo } from "../routes/api";
+import { useTodoStore } from "../store/store";
 
 export function SearchBar() {
   const [newitem, setNewItem] = useState("");
   const [loading, setLoading] = useState(false);
+  const addToList = useTodoStore((state) => state.addTodo);
 
   const submitItem = async () => {
+    addToList(newitem);
     try{
       setLoading(true);
       const result = await addToDo(newitem);

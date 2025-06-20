@@ -5,7 +5,7 @@ import { TotdoList } from '../components/TodoList';
 
 function Main() {
   return (
-    <div style={{ backgroundColor: '#F9F9F9', width: '100vw', padding: '20px', boxSizing: 'border-box' }}>
+    <div style={{ backgroundColor: '#F9F9F9', width: '100vw', padding: '20px', boxSizing: 'border-box', minHeight: '100vh'}}>
       
     
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', marginBottom: '40px' }}>

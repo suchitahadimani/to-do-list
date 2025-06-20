@@ -28,14 +28,22 @@ export async function getAllToDos(){
 }
 
 
-export async function updateToDo(){
-   
-    const response = await fetch('https://dummyjson.com/todos/1', {
-        method: 'PUT', /* or PATCH */
+export async function updateToDo(id:number, status?:boolean, todoText?:string){
+
+      const body: Record<string, any> = {};
+
+        if (typeof status === 'boolean') {
+            body.completed = status;
+        }
+
+        if (typeof todoText === 'string') {
+            body.todo = todoText;
+        }
+        
+    const response = await fetch(`https://dummyjson.com/todos/${id}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            completed: false,
-        })
+        body: JSON.stringify(body)
     })
     if (!response.ok) {
             throw new Error('Failed to update to-do');
@@ -44,8 +52,8 @@ export async function updateToDo(){
     return response.json();
 }
 
-export async function deleteToDo() {
-    const response = await fetch('https://dummyjson.com/todos/1', {
+export async function deleteToDo(id:number) {
+    const response = await fetch(`https://dummyjson.com/todos/${id}`, {
         method: 'DELETE',
         })
     
