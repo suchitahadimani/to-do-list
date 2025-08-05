@@ -10,26 +10,15 @@ interface TodoitemProps {
 }
 
 export function Todoitem( {task, id, complete}:TodoitemProps ){
-    const buttonStyle: React.CSSProperties = {
-        backgroundColor: '#E1E7EB',
-        width: '100px',
-        height: '60px',
-        padding: '20px',
-        borderRadius: '10px',
-        textAlign: 'center',
-        marginLeft: '10px',
-        border: 'none',
-        cursor: 'pointer',
-    };
 
     const [isEditing, setIsEditing] = useState(false);
     const [editedTask, setEditedTask] = useState(task);
     const {updateTask} = useTodoStore();
 
-    const updateTasks= async (task:string) => {
-        updateTask(id, task);
+    const updateTasks= async() => {
+        updateTask(id, editedTask);
         try{
-            const resp = await updateToDo(id, undefined, task);
+            const resp = await updateToDo(id, undefined, editedTask);
             setIsEditing(false);
             console.log(resp);
         }catch(error){
@@ -53,8 +42,10 @@ export function Todoitem( {task, id, complete}:TodoitemProps ){
                         autoFocus
                         onChange={(e) => setEditedTask(e.target.value)}
                         onKeyDown={(e) => {
-                        if (e.key === 'Enter') updateTasks(editedTask);
-                        }}
+                            if (e.key === 'Enter') {
+                                e.preventDefault();
+                                updateTasks();
+                            }}}
                         style={{
                             fontSize: '18px',
                             padding: '10px',

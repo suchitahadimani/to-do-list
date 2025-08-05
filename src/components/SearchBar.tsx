@@ -40,7 +40,7 @@ export function SearchBar() {
       placeholder="Add Item"
       value = {newitem}
       onChange = {(e) => setNewItem(e.target.value)}
-      onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {if (e.key === 'Enter') {submitItem();}}}
+      onKeyDown={(e) => {if (e.key === 'Enter') {submitItem();}}}
       style={{
         fontSize: '18px',
         paddingLeft: '20px',

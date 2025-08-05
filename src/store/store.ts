@@ -13,6 +13,7 @@ interface TodoState {
   setTodos: (todos: Todo[]) => void;
   toggleComplete: (id: number) => void;
   updateTask: (id:number, task:string) => void;
+  appendTodos: (newTodos: Todo[]) => void;
 }
 
 export const useTodoStore = create<TodoState>((set) => ({
@@ -74,6 +75,17 @@ export const useTodoStore = create<TodoState>((set) => ({
     const updated = state.todos.map(t =>
       t.id === id ? { ...t, todo: task } : t
     );
+    return {
+      todos: updated,
+      finishedtodo: updated.filter(t => t.completed),
+      newtodo: updated.filter(t => !t.completed),
+      completedCount: updated.filter(t => t.completed).length,
+      totalCount: updated.length
+    };
+  }),
+
+    appendTodos: (newTodos: Todo[]) => set((state) => {
+    const updated =[...state.todos, ...newTodos];
     return {
       todos: updated,
       finishedtodo: updated.filter(t => t.completed),

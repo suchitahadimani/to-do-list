@@ -17,15 +17,15 @@ export async function addToDo(todoText: string) {
 }
 
 
-export async function getAllToDos(){
-    const response = await fetch('https://dummyjson.com/todos')
-    if (!response.ok) {
-        throw new Error('Failed to retrieve to-dos');
-    }
-
-    return response.json();
-
+export async function getAllToDos(limit = 10, skip = 0) {
+  const response = await fetch(`https://dummyjson.com/todos?limit=${limit}&skip=${skip}`);
+  if (!response.ok) {
+    throw new Error('Failed to retrieve to-dos');
+  }
+  return response.json(); 
 }
+
+
 
 
 export async function updateToDo(id:number, status?:boolean, todoText?:string){
